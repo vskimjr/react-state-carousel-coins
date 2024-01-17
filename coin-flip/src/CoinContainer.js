@@ -13,7 +13,9 @@ function CoinContainer() {
   const [headsCount, setHeadsCount] = useState(0);
   const [tailsCount, setTailsCount] = useState(0);
 
-
+  const handleClick(evt) {
+    return
+  };
 
 
   return (
