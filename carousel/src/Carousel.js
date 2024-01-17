@@ -20,14 +20,15 @@ function Carousel({ photos, title }) {
   const currCard = photos[currCardIdx];
   const total = photos.length;
 
-  const isLeftVisible = (currCardIdx === 0) ? "invisible" : ""
-  const isRightVisible = (currCardIdx === total - 1) ? "invisible" : ""
+  const leftIconVisible = (currCardIdx === 0) ? "invisible" : ""
+  const rightIconVisible = (currCardIdx === total - 1) ? "invisible" : ""
 
   //Increments currCardIdx state by 1
   function goForward() {
     setCurrCardIdx(currCardIdx + 1);
   }
 
+  //Decrements currCardIdx state by 1
   function goBackward() {
     setCurrCardIdx(currCardIdx - 1);
   }
@@ -37,7 +38,7 @@ function Carousel({ photos, title }) {
       <h1>{title}</h1>
       <div className="Carousel-main">
         <i
-          className={`bi bi-arrow-left-circle ${isLeftVisible}`}
+          className={`bi bi-arrow-left-circle ${leftIconVisible}`}
           onClick={goBackward}
         />
         <Card
@@ -47,7 +48,7 @@ function Carousel({ photos, title }) {
           totalNum={total}
         />
         <i
-          className={`bi bi-arrow-right-circle ${isRightVisible}`}
+          className={`bi bi-arrow-right-circle ${rightIconVisible}`}
           onClick={goForward}
         />
       </div>
