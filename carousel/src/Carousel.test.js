@@ -67,3 +67,32 @@ test("works when you click on the left arrow", function() {
   ).not.toBeInTheDocument();
 });
 
+test("arrow visibility depending on carousel position", function() {
+  const { container } = render(
+    <Carousel
+      photos={TEST_IMAGES}
+      title="images for testing"
+    />
+  );
+
+  const rightArrow = container.querySelector(".bi-arrow-right-circle");
+  const leftArrow = container.querySelector(".bi-arrow-left-circle");
+
+  // testing first position of carousel
+  expect(leftArrow).toHaveClass('invisible');
+  expect(rightArrow).not.toHaveClass('invisible');
+
+  // move forward/right in the carousel
+  fireEvent.click(rightArrow);
+
+  // testing middle position of carousel
+  expect(leftArrow).not.toHaveClass('invisible');
+  expect(rightArrow).not.toHaveClass('invisible');
+
+  // move forward/right in the carousel
+  fireEvent.click(rightArrow);
+
+  // testing last position of carousel
+  expect(leftArrow).not.toHaveClass('invisible');
+  expect(rightArrow).toHaveClass('invisible');
+});
