@@ -8,23 +8,37 @@
 
 import React, { useState } from 'react';
 import Coin from "./Coin";
+import { choice } from "./choice";
+import { coins } from "./coins";
 
-function CoinContainer() {
+// we need to check if there is a current coin, if it is null, then we set coin as something and then
+
+function CoinContainer({ coins }) {
+  const [coin, setCoin] = useState(null);
   const [headsCount, setHeadsCount] = useState(0);
   const [tailsCount, setTailsCount] = useState(0);
 
-  const handleClick(evt) {
-    return
+  function handleClick(evt) {
+    const newCoin = choice(coins);
+    setCoin(newCoin);
+
+    if (newCoin.side === "head") {
+      setHeadsCount((headsCount) => headsCount + 1);
+    } else {
+      setTailsCount((tailsCount) => tailsCount + 1);
+    }
   };
 
+  let currentCoin = coin !== null ? <Coin imgSrc={coin.imgSrc} side={coin.side} /> : null;
 
   return (
     <div className="CoinContainer">
       <h1>Flip a coin!</h1>
-      <Coin props={props} />
-      <button onClick={ }>Flip me!</button>
+      {currentCoin}
+      <button onClick={handleClick}>Flip me!</button>
       <p>
-        Out of {headsCount + tailsCount} flips, there have been {headsCount} heads and {tailsCount} tails.
+        Out of {headsCount + tailsCount} flips, there have been {headsCount}
+        heads and {tailsCount} tails.
       </p>
     </div>
   );

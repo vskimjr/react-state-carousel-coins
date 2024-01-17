@@ -1,11 +1,11 @@
 import React from 'react';
 import "./Coin.css";
 
-function Coin(props) {
+function Coin({imgSrc, side}) {
 
   return (
     <div className='Coin'>
-      <img src={props.imgSrc} alt={props.imgSide} />
+      <img src={imgSrc} alt={side} />
     </div>
   );
 }
